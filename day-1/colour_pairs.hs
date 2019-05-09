@@ -19,23 +19,14 @@ module Main where
     neighbours state [] = []
     neighbours state ((other_state, colour):us) = if neighbour state other_state then (other_state, colour) : neighbours state us else neighbours state us
     
-    -- todo this could probably find negatives instead and be shorted
     neighbour :: [Char] -> [Char] -> Bool
-    neighbour "TN" "MI" = True
-    neighbour "TN" "AL" = True
-    neighbour "TN" "GE" = True
-    neighbour "MI" "TN" = True
-    neighbour "MI" "AL" = True
-    neighbour "AL" "TN" = True
-    neighbour "AL" "MI" = True
-    neighbour "AL" "GE" = True
-    neighbour "AL" "FL" = True
-    neighbour "GE" "TN" = True
-    neighbour "GE" "AL" = True
-    neighbour "GE" "FL" = True
-    neighbour "FL" "AL" = True
-    neighbour "FL" "GE" = True
-    neighbour state other_state = False
+    neighbour "TN" "FL" = False
+    neighbour "FL" "TN" = False
+    neighbour "MI" "GE" = False
+    neighbour "GE" "MI" = False
+    neighbour "MI" "FL" = False
+    neighbour "FL" "MI" = False
+    neighbour state other_state = True
 
     -- colour_states ["TN", "MI", "AL", "GE", "FL"]
     colour_states states = do_colour_states states []
