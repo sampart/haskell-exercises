@@ -7,6 +7,13 @@ module Main where
     main :: IO ()
     main = return ()
     
+    sort x = let l_stat = sort_and_report x in
+        if status(l_stat) == False
+            then list(l_stat)
+            else sort(list(l_stat))
+        where status = snd
+              list = fst
+    
     -- second value of tuple is whether any sorting occurred
     sort_and_report [] = ([], False) --`debug` "\n-- []"
     sort_and_report [n] = ([n], False) --`debug` ("\n--" ++ show([n]))
