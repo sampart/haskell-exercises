@@ -17,7 +17,7 @@ module Main where
     -- second value of tuple is whether any sorting occurred
     sort_and_report [] = ([], False) --`debug` "\n-- []"
     sort_and_report [n] = ([n], False) --`debug` ("\n--" ++ show([n]))
-    sort_and_report (n:ns) = if n < head(ns)
+    sort_and_report (n:ns) = if n <= head(ns)
         then let x = sort_and_report(ns) in ((n:list(x)), status(x)) --`debug` "\na"
         else let x = sort_and_report(n : (tail ns)) in ((head(ns) : list(x)), True) --`debug` "\nb"
         
