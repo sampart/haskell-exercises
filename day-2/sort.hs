@@ -7,14 +7,18 @@ module Main where
     main :: IO ()
     main = return ()
     
-    sort [] = [] --`debug` "\n-- []"
-    sort [n] = [n] --`debug` ("\n--" ++ show([n]))
-    sort (n:ns) = if n < head(ns)
-        then (n:sort(ns)) --`debug` "\na"
-        else head(ns) : sort(n : (tail ns)) --`debug` "\nb"
+    -- second value of tuple is whether any sorting occurred
+    sort_and_report [] = ([], False) --`debug` "\n-- []"
+    sort_and_report [n] = ([n], False) --`debug` ("\n--" ++ show([n]))
+    sort_and_report (n:ns) = if n < head(ns)
+        then let x = sort_and_report(ns) in ((n:list(x)), status(x)) --`debug` "\na"
+        else let x = sort_and_report(n : (tail ns)) in ((head(ns) : list(x)), True) --`debug` "\nb"
+        
+        where status = snd
+              list = fst
     
     
     -- todo try this form
     -- isPos n 
     -- | n<0       = False
-    -- | otherwise = True
+    -- | otherwise = True    
