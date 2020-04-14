@@ -23,9 +23,3 @@ module Main where
         
         where status = snd
               list = fst
-    
-    
-    -- todo try this form
-    -- isPos n 
-    -- | n<0       = False
-    -- | otherwise = True    
